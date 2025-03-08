@@ -23,7 +23,6 @@ class SubCategoryForm(forms.ModelForm):
         model = SubCategory
         fields = ['name', 'category']
 
-
 class TransactionForm(forms.ModelForm):
 
     class Meta:
