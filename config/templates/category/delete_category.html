@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Удалить категорию</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #00698f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Удалить категорию</h1>
+    <p>Вы уверены, что хотите удалить категорию "{{ object.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+    <p><a href="{% url 'transaction:reference' %}">Вернуться к справочнику</a></p>
+</body>
+</html>

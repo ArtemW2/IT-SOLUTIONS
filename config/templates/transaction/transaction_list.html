@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дневник ДДС</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #F7F7F7;
+        }
+        h1, h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #87CEEB;
+            color: #fff;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #3e8e41;
+        }
+        .reference-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .reference-link:hover {
+            background-color: #3e8e41;
+        }
+        .filter-form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .filter-form div {
+            margin: 10px;
+        }
+        
+        .filter-form .submit-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'transaction:reference' %}" class="reference-link">Справочник</a>
+        <h1>Список транзакций</h1>
+
+        <!-- Форма фильтрации -->
+        <div class="filter-container">
+            <form method="get" class="filter-form">
+                {% for field in filter.form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn">Применить фильтры</button>
+            </form>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Статус</th>
+                    <th>Тип</th>
+                    <th>Категория</th>
+                    <th>Подкатегория</th>
+                    <th>Сумма</th>
+                    <th>Комментарий</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in filter.qs %}
+                    <tr>
+                        <td>{{ transaction.date }}</td>
+                        <td>{{ transaction.status }}</td>
+                        <td>{{ transaction.type }}</td>
+                        <td>{{ transaction.category.name }}</td>
+                        <td>{{ transaction.subcategory.name }}</td>
+                        <td>{{ transaction.amount }}</td>
+                        <td>{{ transaction.text }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="{% url 'transaction:transaction_update' transaction.id %}" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'transaction:transaction_delete' transaction.id %}" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{% url 'transaction:transaction_create' %}" class="btn">
+                <i class="fas fa-plus"></i> Создать новую запись
+            </a>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.sortable').click(function() {
+                    var field = $(this).data('field');
+                    var table = $('#transaction-table');
+                    var rows = table.find('tbody tr').toArray();
+            
+                    rows.sort(function(a, b) {
+                        var aValue = $(a).find('td').eq(getColumnIndex(field)).text();
+                        var bValue = $(b).find('td').eq(getColumnIndex(field)).text();
+            
+                        if (aValue < bValue) return -1;
+                        if (aValue > bValue) return 1;
+                        return 0;
+                    });
+            
+                    table.find('tbody').empty().append(rows);
+            
+                    function getColumnIndex(fieldName) {
+                        var headers = table.find('th');
+                        for (var i = 0; i < headers.length; i++) {
+                            if ($(headers[i]).data('field') === fieldName) {
+                                return i;
+                            }
+                        }
+                        return -1;
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

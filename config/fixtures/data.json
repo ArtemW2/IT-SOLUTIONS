@@ -1,0 +1,301 @@
+[   
+    {
+        "model": "transaction.status",
+        "fields": {
+            "name": "Бизнес"
+        }
+    },
+    {
+        "model": "transaction.status",
+        "fields": {
+            "name": "Личное"
+        }
+    },
+    {
+        "model": "transaction.status",
+        "fields": {
+            "name": "Налог"
+        }
+    },
+    {
+            "model": "transaction.type",
+            "fields": {
+                "name": "Пополнение"
+            }
+    },
+    {
+            "model": "transaction.type",
+            "fields": {
+                "name": "Списание"
+            }
+    },
+    {
+        "model": "transaction.category",
+        "fields": {
+            "name": "Маркетинг"
+        }
+    },
+    {
+        "model": "transaction.category",
+        "fields": {
+            "name": "Инфрастуктура"
+        }
+    },
+    {
+        "model": "transaction.subcategory",
+        "fields": {
+            "name": "Avito",
+            "category": 1
+        }
+    },
+    {
+        "model": "transaction.subcategory",
+        "fields": {
+            "name": "Farpost",
+            "category": 1
+        }
+    },
+    {
+        "model": "transaction.subcategory",
+        "fields": {
+            "name": "VPS",
+            "category": 2
+        }
+    },
+    {
+        "model": "transaction.subcategory",
+        "fields": {
+            "name": "Proxy",
+            "category": 2
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-01-01",
+            "type": 1,
+            "status": 1,
+            "category": 1,
+            "subcategory": 1,
+            "amount": 1000.00,
+            "text": "Deposit for Avito marketing"
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-01-05",
+            "type": 2,
+            "status": 2,
+            "category": 2,
+            "subcategory": 3,
+            "amount": 500.00,
+            "text": ""
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-01-10",
+            "type": 1,
+            "status": 1,
+            "category": 1,
+            "subcategory": 2,
+            "amount": 800.00,
+            "text": "Deposit for Farpost marketing"
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-01-15",
+            "type": 2,
+            "status": 3,
+            "category": 2,
+            "subcategory": 4,
+            "amount": 300.00,
+            "text": ""
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-01-20",
+            "type": 1,
+            "status": 1,
+            "category": 1,
+            "subcategory": 1,
+            "amount": 1200.00,
+            "text": "Deposit for Avito marketing"
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-01-25",
+            "type": 2,
+            "status": 2,
+            "category": 2,
+            "subcategory": 3,
+            "amount": 600.00,
+            "text": ""
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-02-01",
+            "type": 1,
+            "status": 1,
+            "category": 1,
+            "subcategory": 2,
+            "amount": 900.00,
+            "text": "Deposit for Farpost marketing"
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-02-05",
+            "type": 2,
+            "status": 3,
+            "category": 2,
+            "subcategory": 4,
+            "amount": 400.00,
+            "text": ""
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-02-10",
+            "type": 1,
+            "status": 1,
+            "category": 1,
+            "subcategory": 1,
+            "amount": 1500.00,
+            "text": "Deposit for Avito marketing"
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-02-15",
+            "type": 2,
+            "status": 2,
+            "category": 2,
+            "subcategory": 3,
+            "amount": 700.00,
+            "text": ""
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-02-20",
+            "type": 1,
+            "status": 1,
+            "category": 1,
+            "subcategory": 2,
+            "amount": 1100.00,
+            "text": "Deposit for Farpost marketing"
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-02-25",
+            "type": 2,
+            "status": 3,
+            "category": 2,
+            "subcategory": 4,
+            "amount": 200.00,
+            "text": ""
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-03-01",
+            "type": 1,
+            "status": 1,
+            "category": 1,
+            "subcategory": 1,
+            "amount": 1300.00,
+            "text": "Deposit for Avito marketing"
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-03-05",
+            "type": 2,
+            "status": 2,
+            "category": 2,
+            "subcategory": 3,
+            "amount": 800.00,
+            "text": ""
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-03-10",
+            "type": 1,
+            "status": 1,
+            "category": 1,
+            "subcategory": 2,
+            "amount": 1000.00,
+            "text": "Deposit for Farpost marketing"
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-03-15",
+            "type": 2,
+            "status": 3,
+            "category": 2,
+            "subcategory": 4,
+            "amount": 250.00,
+            "text": ""
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-03-20",
+            "type": 1,
+            "status": 1,
+            "category": 1,
+            "subcategory": 1,
+            "amount": 1400.00,
+            "text": "Deposit for Avito marketing"
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-03-25",
+            "type": 2,
+            "status": 2,
+            "category": 2,
+            "subcategory": 3,
+            "amount": 900.00,
+            "text": ""
+        }
+    },
+    {
+        "model": "transaction.transaction",
+        "fields": {
+            "date": "2024-04-01",
+            "type": 1,
+            "status": 1,
+            "category": 1,
+            "subcategory": 2,
+            "amount": 1200.00,
+            "text": "Deposit for Farpost marketing"
+        }
+    }
+
+]

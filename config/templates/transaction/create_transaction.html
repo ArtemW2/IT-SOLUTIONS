@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать транзакцию</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Создать запись</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="alert alert-danger">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <a href="{% url 'transaction:transaction_list' %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#id_category').change(function() {
+                var categoryId = $(this).val();
+                $.ajax({
+                    url: '{% url "transaction:get_subcategories" %}',
+                    data: {
+                        'category_id': categoryId
+                    },
+                    success: function(data) {
+                        var subcategorySelect = $('#id_subcategory');
+                        subcategorySelect.empty(); // Очистить текущие подкатегории
+                        $.each(data, function(index, subcategory) {
+                            subcategorySelect.append($('<option></option>').attr('value', subcategory.id).text(subcategory.name));
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Справочник</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1, h2 {
+            color: #00698f;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+        a:hover {
+            color: #23527c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Справочник</h1>
+
+    <h2>Статусы</h2>
+    <ul>
+        {% for status in statuses %}
+            <li>{{ status.name }}
+                <a href="{% url 'transaction:status_update' status.id %}">Редактировать</a>
+                <a href="{% url 'transaction:status_delete' status.id %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'transaction:status_create' %}">Добавить статус</a>
+
+    <h2>Типы</h2>
+    <ul>
+        {% for type in types %}
+            <li>{{ type.name }}
+                <a href="{% url 'transaction:type_update' type.id %}">Редактировать</a>
+                <a href="{% url 'transaction:type_delete' type.id %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'transaction:type_create' %}">Добавить тип</a>
+
+    <h2>Категории</h2>
+    <ul>
+        {% for category in categories %}
+            <li>{{ category.name }}
+                <a href="{% url 'transaction:category_update' category.id %}">Редактировать</a>
+                <a href="{% url 'transaction:category_delete' category.id %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'transaction:category_create' %}">Добавить категорию</a>
+
+    <h2>Подкатегории</h2>
+    <ul>
+        {% for subcategory in subcategories %}
+            <li>{{ subcategory.name }}
+                <a href="{% url 'transaction:subcategory_update' subcategory.id %}">Редактировать</a>
+                <a href="{% url 'transaction:subcategory_delete' subcategory.id %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'transaction:subcategory_create' %}">Добавить подкатегорию</a>
+
+    <p><a href="{% url 'transaction:transaction_list' %}">Вернуться к списку транзакций</a></p>
+</body>
+</html>
