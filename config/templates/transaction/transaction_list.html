@@ -144,22 +144,54 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script>
             $(document).ready(function() {
+                // Обновление подкатегорий при изменении категории
+                $('#id_category').change(function() {
+                    var categoryId = $(this).val();
+                    
+                    $.ajax({
+                        url: '{% url "transaction:get_subcategories" %}',
+                        data: {
+                            'category_id': categoryId
+                        },
+                        success: function(data) {
+                            let subcategorySelect = $('#id_subcategory');
+                            subcategorySelect.empty();
+                            subcategorySelect.append($('<option>', {
+                                value: '',
+                                text: '---------'
+                            }));
+                            $.each(data, function(index, item) {
+                                subcategorySelect.append($('<option>', {
+                                    value: item.id,
+                                    text: item.name
+                                }));
+                            });
+                        }
+                    });
+                });
+        
+                // Инициализация при загрузке страницы, если категория уже выбрана
+                if ($('#id_category').val()) {
+                    $('#id_category').trigger('change');
+                }
+        
+                // Сортировка таблицы
                 $('.sortable').click(function() {
                     var field = $(this).data('field');
                     var table = $('#transaction-table');
                     var rows = table.find('tbody tr').toArray();
-            
+                    
                     rows.sort(function(a, b) {
                         var aValue = $(a).find('td').eq(getColumnIndex(field)).text();
                         var bValue = $(b).find('td').eq(getColumnIndex(field)).text();
-            
+                    
                         if (aValue < bValue) return -1;
                         if (aValue > bValue) return 1;
                         return 0;
                     });
-            
+                    
                     table.find('tbody').empty().append(rows);
-            
+                    
                     function getColumnIndex(fieldName) {
                         var headers = table.find('th');
                         for (var i = 0; i < headers.length; i++) {
@@ -172,6 +204,7 @@
                 });
             });
         </script>
+        
     </div>
 </body>
 </html>

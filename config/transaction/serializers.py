@@ -68,7 +68,7 @@ class TransactionDetailSerializer(serializers.ModelSerializer):
         try:
             return model.objects.get(name = name)
         except model.DoesNotExist:
-            raise serializers.ValidationError({name: f'{model} "{name}" не существует'})
+            raise serializers.ValidationError({name: f'Данного наименования не существует в базе'})
 
     #Устанавливаем связь между категорией и подкатегорией
     def get_subcategory_instance(self, subcategory, category):
