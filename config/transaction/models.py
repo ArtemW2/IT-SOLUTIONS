@@ -5,7 +5,7 @@ from django.core.validators import MinValueValidator
 import datetime
 
 class Status(models.Model):
-    name = models.CharField(max_length=50, verbose_name = 'Статус')
+    name = models.CharField(max_length=50, unique = True, verbose_name = 'Статус')
 
     def __str__(self):
         return self.name
@@ -16,7 +16,7 @@ class Status(models.Model):
 
 
 class Type(models.Model):
-    name = models.CharField(max_length=50, verbose_name = 'Тип')
+    name = models.CharField(max_length=50, unique = True, verbose_name = 'Тип')
 
     def __str__(self):
         return self.name
@@ -27,7 +27,7 @@ class Type(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length = 100, verbose_name = 'Категория')
+    name = models.CharField(max_length = 100, unique = True, verbose_name = 'Категория')
 
     def __str__(self):
         return self.name
@@ -38,7 +38,7 @@ class Category(models.Model):
     
 
 class SubCategory(models.Model):
-    name = models.CharField(max_length = 100, verbose_name = 'Подкатегория')
+    name = models.CharField(max_length = 100, unique = True, verbose_name = 'Подкатегория')
     category = models.ForeignKey(Category, on_delete = models.CASCADE,verbose_name = 'Категория', related_name = 'subcategories')
 
     def __str__(self):
